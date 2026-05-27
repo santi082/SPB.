@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SPB LearnHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0f1e;font-family:'Noto Sans Thai','Segoe UI',sans-serif;color:#f1f5f9;min-height:100vh;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:#111827;}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px;}
+.bg{position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,#1e1b4b33 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,#0f2a1a33 0%,transparent 60%);pointer-events:none;z-index:0;}
+header{position:sticky;top:0;z-index:100;background:#0a0f1ecc;backdrop-filter:blur(12px);border-bottom:1px solid #ffffff10;}
+.hi{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:#f1f5f9;font-family:inherit;}
+nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.nb{background:none;border:none;cursor:pointer;color:#94a3b8;font-size:14px;padding:8px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.nb:hover{background:#ffffff10;}
+.na{background:#ffffff12;border:none;cursor:pointer;color:#f1f5f9;font-size:14px;padding:8px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.lb{background:#6366f122;border:1px solid #6366f144;cursor:pointer;color:#a5b4fc;font-size:14px;padding:8px 16px;border-radius:8px;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.ub{display:flex;align-items:center;gap:6px;color:#94a3b8;font-size:13px;padding:6px 12px;background:#ffffff08;border-radius:20px;}
+.ab{display:flex;align-items:center;gap:6px;color:#fbbf24;font-size:13px;padding:6px 12px;background:#f59e0b11;border-radius:20px;border:1px solid #f59e0b33;}
+main{max-width:1100px;margin:0 auto;padding:32px 24px;position:relative;z-index:1;}
+.notif{position:fixed;top:80px;right:24px;padding:12px 20px;border-radius:10px;color:white;font-weight:600;z-index:9999;font-size:14px;max-width:300px;}
+.hero{text-align:center;padding:48px 0 40px;}
+.hbadge{display:inline-block;background:#f59e0b22;border:1px solid #f59e0b44;color:#fbbf24;padding:6px 18px;border-radius:20px;font-size:13px;margin-bottom:16px;}
+.htitle{font-size:clamp(36px,8vw,64px);font-weight:900;margin:0 0 12px;letter-spacing:-2px;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hsub{color:#64748b;font-size:16px;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:900px;margin:0 auto;}
+.card{background:#111827;border:1px solid #ffffff10;border-radius:20px;padding:28px;text-align:left;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;font-family:inherit;width:100%;}
+.card:hover{transform:translateY(-4px);border-color:#ffffff25;}
+.ci{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:28px;}
+.ct{font-size:18px;font-weight:700;margin:0 0 8px;}
+.cd{color:#64748b;font-size:13px;line-height:1.6;margin:0;}
+.ca{position:absolute;bottom:18px;right:22px;font-size:22px;font-weight:700;}
+.pw{max-width:800px;margin:0 auto;}
+.ptitle{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:800;margin-bottom:24px;flex-wrap:wrap;}
+.tr{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.tab{background:#111827;border:1px solid #ffffff10;color:#64748b;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;transition:all 0.2s;}
+.tab:hover{border-color:#ffffff25;color:#94a3b8;}
+.tac{background:#6366f122!important;border:1px solid #6366f1!important;color:#a5b4fc!important;font-weight:600;}
+.tg{background:#10b98122!important;border:1px solid #10b981!important;color:#6ee7b7!important;}
+.ty{background:#f59e0b22!important;border:1px solid #f59e0b!important;color:#fbbf24!important;}
+.fl{display:flex;flex-direction:column;gap:10px;}
+.fc{background:#111827;border:1px solid #ffffff0a;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.fn{font-weight:600;margin-bottom:4px;}
+.fm{color:#64748b;font-size:13px;}
+.lockbtn{background:#ef444422;border:1px solid #ef4444;color:#fca5a5;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.openbtn{background:#10b98122;border:1px solid #10b981;color:#6ee7b7;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;font-family:inherit;}
+.empty{color:#374151;text-align:center;padding:40px;font-size:16px;}
+.upbtn{display:inline-flex;align-items:center;gap:8px;background:#6366f133;border:1px solid #6366f1;color:#a5b4fc;padding:10px 18px;border-radius:10px;cursor:pointer;margin-bottom:16px;font-size:13px;font-weight:600;font-family:inherit;}
+.keybtn{display:inline-flex;align-items:center;gap:6px;background:#f59e0b22;border:1px solid #f59e0b66;color:#fbbf24;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit;}
+.delbtn{display:inline-flex;align-items:center;gap:6px;background:#ef444422;border:1px solid #ef444466;color:#f87171;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit;}
+.editbtn{background:#334155;border:1px solid #475569;color:#94a3b8;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:4px;font-size:12px;}
+.chatbox{background:#111827;border:1px solid #ffffff0a;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;height:480px;}
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.bme{max-width:72%;padding:10px 14px;border-radius:18px 18px 4px 18px;background:#6366f1;margin-left:auto;}
+.both{max-width:72%;padding:10px 14px;border-radius:18px 18px 18px 4px;background:#1e293b;}
+.sname{color:#a5b4fc;font-size:11px;font-weight:700;margin-bottom:3px;}
+.mtime{color:#94a3b899;font-size:10px;margin-top:3px;text-align:right;}
+.cir{display:flex;gap:10px;padding:14px;border-top:1px solid #ffffff0a;}
+.ci2{flex:1;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-family:inherit;}
+.sbtn{background:#6366f1;border:none;color:white;padding:0 18px;border-radius:10px;cursor:pointer;font-size:18px;}
+.tc{background:#111827;border:1px solid #ffffff0a;border-radius:16px;padding:24px;margin-bottom:14px;}
+.th2{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.ts{font-size:20px;font-weight:700;color:#10b981;}
+.tp{background:#10b98122;border:1px solid #10b98166;color:#6ee7b7;padding:6px 14px;border-radius:20px;font-weight:700;font-size:14px;}
+.tsc{margin-bottom:16px;}
+.tl{display:flex;align-items:center;gap:6px;color:#94a3b8;font-size:13px;margin-bottom:6px;font-weight:600;}
+.bookbtn{background:#10b981;border:none;color:white;padding:10px 24px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;}
+.ov{position:fixed;inset:0;background:#00000090;backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:500;}
+.modal{background:#111827;border:1px solid #ffffff15;border-radius:20px;padding:28px;width:400px;max-width:93vw;max-height:90vh;overflow-y:auto;}
+.modal h3{color:#f1f5f9;margin-bottom:18px;font-size:19px;}
+.inp{width:100%;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:10px;font-family:inherit;}
+.inp:focus{border-color:#6366f1;}
+.mbtns{display:flex;gap:10px;margin-top:6px;}
+.okbtn{flex:1;background:#6366f1;border:none;color:white;padding:11px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;}
+.okbtn:hover{background:#4f46e5;}
+.nobtn{flex:1;background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:11px;border-radius:10px;cursor:pointer;font-size:14px;font-family:inherit;}
+.lbl{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px;margin-top:8px;}
+textarea.inp{min-height:75px;resize:vertical;}
+.swm{text-align:center;margin-top:14px;color:#64748b;font-size:13px;}
+.swm button{color:#6366f1;background:none;border:none;cursor:pointer;font-size:13px;font-family:inherit;}
+.hidden{display:none!important;}
+.fr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.si{background:#111827;border:1px solid #ffffff0a;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.si input{flex:1;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:7px 10px;border-radius:8px;font-size:13px;outline:none;font-family:inherit;}
+.addbtn{display:inline-flex;align-items:center;gap:6px;background:#10b98122;border:1px solid #10b981;color:#6ee7b7;padding:9px 16px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;margin-top:6px;}
+.logtbl{width:100%;border-collapse:collapse;font-size:12px;}
+.logtbl th{text-align:left;padding:9px 10px;color:#64748b;border-bottom:1px solid #1e293b;font-weight:600;}
+.logtbl td{padding:9px 10px;border-bottom:1px solid #ffffff06;color:#cbd5e1;vertical-align:top;}
+.logtbl tr:hover td{background:#ffffff04;}
+.bused{background:#ef444422;color:#f87171;padding:2px 7px;border-radius:4px;font-size:11px;}
+.bact{background:#10b98122;color:#6ee7b7;padding:2px 7px;border-radius:4px;font-size:11px;}
+.csec{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px;margin-bottom:10px;}
+.randbtn{display:inline-flex;align-items:center;gap:5px;background:#6366f122;border:1px solid #6366f1;color:#a5b4fc;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit;margin-top:6px;}
+/* VIEWER MODAL */
+.viewer-ov{position:fixed;inset:0;background:#000000ee;z-index:800;display:flex;flex-direction:column;}
+.viewer-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#111827;border-bottom:1px solid #ffffff10;}
+.viewer-title{font-weight:700;font-size:15px;color:#f1f5f9;}
+.viewer-close{background:#ef444422;border:1px solid #ef4444;color:#f87171;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;}
+.viewer-body{flex:1;position:relative;overflow:hidden;}
+.viewer-iframe{width:100%;height:100%;border:none;}
+/* WATERMARK */
+.watermark{position:fixed;inset:0;pointer-events:none;z-index:900;display:flex;align-items:center;justify-content:center;transform:rotate(-30deg);}
+.watermark-text{font-size:clamp(20px,5vw,36px);font-weight:900;color:rgba(255,255,255,0.07);text-align:center;letter-spacing:2px;line-height:1.6;user-select:none;}
+/* EMAIL badge */
+.email-badge{font-size:11px;color:#64748b;margin-top:2px;}
+.hint-box{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:12px;color:#94a3b8;line-height:1.6;}
+.hint-box b{color:#fbbf24;}
+@media(max-width:600px){.hi{padding:12px 14px;}main{padding:18px 14px;}.htitle{font-size:36px;}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="notif" class="notif hidden"></div>
+
+<header>
+  <div class="hi">
+    <button class="logo" onclick="goPage('home')"><span style="color:#f59e0b">✦</span> SPB LearnHub</button>
+    <nav>
+      <button class="nb" id="nh" onclick="goPage('home')">🏠 หน้าหลัก</button>
+      <button class="nb hidden" id="na" onclick="goPage('admin')">🛡 แผงควบคุม</button>
+      <span id="ubadge" class="ub hidden"></span>
+      <span id="abadge" class="ab hidden">🛡 ผู้ดูแลระบบ</span>
+      <button class="lb" id="authbtn" onclick="handleAuth()">👤 เข้าสู่ระบบ</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <div id="pg-home">
+    <div class="hero">
+      <div class="hbadge">✦ ระบบการศึกษา</div>
+      <h1 class="htitle">SPB LearnHub</h1>
+      <p class="hsub">แหล่งรวมการเรียนรู้ เฉลยการบ้าน และการติวส่วนตัว</p>
+    </div>
+    <div class="cgrid">
+      <button class="card" onclick="goPage('hw')">
+        <div class="ci" style="background:#f59e0b22;color:#f59e0b">📚</div>
+        <h3 class="ct" style="color:#f59e0b">เฉลยการบ้าน</h3>
+        <p class="cd">ดูเฉลยการบ้านแยกตามวิชา ปลดล็อคด้วยรหัสจากผู้ดูแล</p>
+        <div class="ca" style="color:#f59e0b">→</div>
+      </button>
+      <button class="card" onclick="goPage('chat')">
+        <div class="ci" style="background:#6366f122;color:#6366f1">💬</div>
+        <h3 class="ct" style="color:#6366f1">สอบถามข้อมูล</h3>
+        <p class="cd">แชทโดยตรงกับผู้ดูแลระบบ รับคำตอบได้เร็วทันใจ</p>
+        <div class="ca" style="color:#6366f1">→</div>
+      </button>
+      <button class="card" onclick="goPage('tutor')">
+        <div class="ci" style="background:#10b98122;color:#10b981">🎓</div>
+        <h3 class="ct" style="color:#10b981">สอนการบ้าน</h3>
+        <p class="cd">ดูข้อมูลการติวและตารางเวลา พร้อมราคาแต่ละวิชา</p>
+        <div class="ca" style="color:#10b981">→</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- HW -->
+  <div id="pg-hw" class="pw hidden">
+    <h2 class="ptitle"><span style="color:#f59e0b">📚</span> เฉลยการบ้าน</h2>
+    <div class="tr" id="hwtabs"></div>
+    <div class="fl" id="hwfiles"></div>
+  </div>
+
+  <!-- CHAT -->
+  <div id="pg-chat" class="pw hidden">
+    <h2 class="ptitle"><span style="color:#6366f1">💬</span> สอบถามข้อมูล</h2>
+    <div class="chatbox">
+      <div class="msgs" id="chatmsgs"></div>
+      <div id="guestrow" class="hidden" style="padding:8px 14px 0">
+        <input class="inp" id="guestname" placeholder="ชื่อของคุณ" style="margin-bottom:0"/>
+      </div>
+      <div class="cir">
+        <input class="ci2" id="chatinput" placeholder="พิมพ์ข้อความ..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+        <button class="sbtn" onclick="sendMsg()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TUTOR -->
+  <div id="pg-tutor" class="pw hidden">
+    <h2 class="ptitle"><span style="color:#10b981">🎓</span> สอนการบ้าน</h2>
+    <div class="tr" id="tutortabs"></div>
+    <div id="tutorcontent"></div>
+  </div>
+
+  <!-- ADMIN -->
+  <div id="pg-admin" class="pw hidden">
+    <h2 class="ptitle"><span style="color:#f59e0b">🛡</span> แผงควบคุมผู้ดูแล</h2>
+    <div class="tr">
+      <button class="tab ty tac" id="at-hw" onclick="aTab('hw')">📁 จัดการเฉลย</button>
+      <button class="tab" id="at-subj" onclick="aTab('subj')">📝 จัดการวิชา</button>
+      <button class="tab" id="at-tutor" onclick="aTab('tutor')">🎓 จัดการติว</button>
+      <button class="tab" id="at-chat" onclick="aTab('chat')">💬 แชท</button>
+      <button class="tab" id="at-users" onclick="aTab('users')">👥 ผู้ใช้ & รหัส</button>
+    </div>
+    <div id="ap-hw">
+      <div class="tr" id="ahwtabs"></div>
+      <div class="hint-box">💡 วิธีอัพโหลดไฟล์: อัพโหลดไฟล์ขึ้น <b>Google Drive</b> → คลิกขวา → แชร์ → ทุกคนที่มีลิงก์ → คัดลอกลิงก์ → วางในช่องด้านล่าง</div>
+      <button class="upbtn" onclick="aUpload()">⬆ เพิ่มไฟล์ใหม่</button>
+      <div class="fl" id="ahwfiles"></div>
+    </div>
+    <div id="ap-subj" class="hidden">
+      <p style="color:#64748b;font-size:13px;margin-bottom:14px">แก้ไขชื่อวิชา เพิ่ม หรือลบได้ที่นี่</p>
+      <div id="subjlist"></div>
+      <button class="addbtn" onclick="addSubj()">➕ เพิ่มวิชา</button>
+      <div style="margin-top:14px"><button class="okbtn" style="max-width:150px" onclick="saveSubj()">💾 บันทึก</button></div>
+    </div>
+    <div id="ap-tutor" class="hidden"><div id="atutorlist"></div></div>
+    <div id="ap-chat" class="hidden">
+      <div class="chatbox">
+        <div class="msgs" id="achatmsgs"></div>
+        <div class="cir">
+          <input class="ci2" id="achatinput" placeholder="ตอบกลับ..." onkeydown="if(event.key==='Enter')sendAdminMsg()"/>
+          <button class="sbtn" onclick="sendAdminMsg()">➤</button>
+        </div>
+      </div>
+    </div>
+    <div id="ap-users" class="hidden"><div id="auserlist"></div></div>
+  </div>
+</main>
+
+<!-- LOGIN MODAL -->
+<div class="ov hidden" id="m-login">
+  <div class="modal">
+    <h3 id="ltitle">เข้าสู่ระบบ</h3>
+    <label class="lbl">อีเมล</label>
+    <input class="inp" id="lemail" type="email" placeholder="example@email.com" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <label class="lbl">รหัสผ่าน</label>
+    <input class="inp" id="lpass" type="password" placeholder="password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <div id="reg-extra" class="hidden">
+      <label class="lbl">ชื่อแสดงผล</label>
+      <input class="inp" id="ldname" placeholder="ชื่อที่ต้องการแสดง"/>
+    </div>
+    <div class="mbtns">
+      <button class="okbtn" id="lbtn" onclick="doLogin()">เข้าสู่ระบบ</button>
+      <button class="nobtn" onclick="H('m-login')">ยกเลิก</button>
+    </div>
+    <div class="swm"><span id="swt">ยังไม่มีบัญชี? </span><button onclick="toggleMode()"><span id="swbt">สมัครสมาชิก</span></button></div>
+  </div>
+</div>
+
+<!-- CODE MODAL -->
+<div class="ov hidden" id="m-code">
+  <div class="modal">
+    <h3 style="color:#f59e0b">🔑 ใส่รหัสปลดล็อค</h3>
+    <p style="color:#94a3b8;margin-bottom:14px;font-size:13px">รหัส 1 รหัสใช้ได้ 1 คนเท่านั้น หลังปลดล็อคแล้วเปิดได้ตลอดไม่ต้องใส่ซ้ำ</p>
+    <input class="inp" id="codeinput" placeholder="รหัส เช่น ABC123" onkeydown="if(event.key==='Enter')doUnlock()"/>
+    <div class="mbtns">
+      <button class="okbtn" onclick="doUnlock()">ยืนยัน</button>
+      <button class="nobtn" onclick="H('m-code')">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- SET CODE MODAL -->
+<div class="ov hidden" id="m-setcode">
+  <div class="modal">
+    <h3 style="color:#f59e0b">🔑 ตั้งรหัสสำหรับไฟล์</h3>
+    <input type="hidden" id="scfid"/>
+    <div class="csec">
+      <label class="lbl" style="margin-top:0">พิมพ์รหัสเอง หรือกดสุ่ม</label>
+      <input class="inp" id="sccustom" placeholder="รหัส (ตัวอักษร/ตัวเลข)" style="margin-bottom:6px"/>
+      <button class="randbtn" onclick="fillRand()">🎲 สุ่มรหัส</button>
+    </div>
+    <div class="mbtns" style="margin-top:10px">
+      <button class="okbtn" onclick="doSetCode()">บันทึกรหัส</button>
+      <button class="nobtn" onclick="H('m-setcode')">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- TUTOR EDIT MODAL -->
+<div class="ov hidden" id="m-tutor">
+  <div class="modal">
+    <h3 style="color:#10b981">✏️ แก้ไขข้อมูลการติว</h3>
+    <input type="hidden" id="etid"/>
+    <label class="lbl">คำอธิบาย</label>
+    <textarea class="inp" id="etdesc" rows="3"></textarea>
+    <label class="lbl">ราคา (บาท/ชั่วโมง)</label>
+    <input class="inp" id="etprice" type="number"/>
+    <label class="lbl">เวลาที่สามารถติวได้</label>
+    <input class="inp" id="ettimes"/>
+    <div class="mbtns" style="margin-top:10px">
+      <button class="okbtn" style="background:#10b981" onclick="saveTutor()">บันทึก</button>
+      <button class="nobtn" onclick="H('m-tutor')">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- FILE VIEWER -->
+<div class="viewer-ov hidden" id="viewer">
+  <div class="viewer-header">
+    <span class="viewer-title" id="viewer-title">ดูไฟล์</span>
+    <button class="viewer-close" onclick="closeViewer()">✕ ปิด</button>
+  </div>
+  <div class="viewer-body">
+    <iframe class="viewer-iframe" id="viewer-frame" src="" allowfullscreen></iframe>
+  </div>
+  <div class="watermark hidden" id="watermark">
+    <div class="watermark-text" id="watermark-text"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DB
+// ══════════════════════════════════════════
+const LS='spb_v5';
+const DEF={
+  users:[],
+  subjects:["วิชา 1","วิชา 2","วิชา 3","วิชา 4"],
+  hwFiles:{"0":[],"1":[],"2":[],"3":[]},
+  tutoring:[
+    {id:0,subject:"วิชา 1",description:"ติวคณิตศาสตร์พื้นฐาน บทที่ 1-5",price:300,times:"จ-พ 17:00-20:00"},
+    {id:1,subject:"วิชา 2",description:"ติวฟิสิกส์ กลศาสตร์และไฟฟ้า",price:350,times:"อ-ศ 16:00-19:00"},
+    {id:2,subject:"วิชา 3",description:"ติวเคมี ปฏิกิริยาและสารละลาย",price:280,times:"จ-ศ 18:00-21:00"},
+    {id:3,subject:"วิชา 4",description:"ติวชีววิทยา เซลล์และพันธุกรรม",price:250,times:"เสาร์-อาทิตย์ 10:00-17:00"}
+  ],
+  chat:[{id:1,from:"admin",text:"สวัสดีครับ มีอะไรให้ช่วยไหมครับ?",time:"10:00"}],
+  codes:{},
+  codelog:[]
+};
+function loadDB(){ try{ const d=localStorage.getItem(LS); if(d) return JSON.parse(d); }catch(e){} return JSON.parse(JSON.stringify(DEF)); }
+function saveDB(){ try{ localStorage.setItem(LS,JSON.stringify(db)); }catch(e){} }
+let db=loadDB();
+
+// ══════════════════════════════════════════
+// SESSION — localStorage ทำให้ไม่หลุดเมื่อรีเฟรช
+// ══════════════════════════════════════════
+const SK='spb_sess_v5';
+const AU='admin', AP='admin123';
+function loadSess(){ try{ const s=localStorage.getItem(SK); if(s) return JSON.parse(s); }catch(e){} return {isAdmin:false,uid:null}; }
+function saveSess(){ try{ localStorage.setItem(SK,JSON.stringify({isAdmin,uid:curUser?curUser.id:null})); }catch(e){} }
+function clrSess(){ try{ localStorage.removeItem(SK); }catch(e){} }
+
+let sess=loadSess();
+let isAdmin=sess.isAdmin||false;
+let curUser=sess.uid?(db.users.find(u=>u.id===sess.uid)||null):null;
+
+// ══════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════
+function $(i){ return document.getElementById(i); }
+function S(i){ $(i).classList.remove('hidden'); }
+function H(i){ $(i).classList.add('hidden'); }
+function notify(msg,t='ok'){
+  const el=$('notif');
+  el.textContent=msg;
+  el.style.background=t==='ok'?'#10b981':t==='err'?'#ef4444':'#6366f1';
+  el.style.animation='none'; el.offsetHeight;
+  S('notif'); clearTimeout(window._nt);
+  window._nt=setTimeout(()=>H('notif'),3200);
+}
+function randCode(){ return Math.random().toString(36).substring(2,8).toUpperCase(); }
+function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+// ══════════════════════════════════════════
+// PAGES
+// ══════════════════════════════════════════
+const PAGES=['home','hw','chat','tutor','admin'];
+let curPage='home',hwSub=0,tutSub=0,ahwSub=0,aTabN='hw',loginMode='login',pendFile=null;
+
+function goPage(p){
+  if(p==='admin'&&!isAdmin){ notify('ไม่มีสิทธิ์เข้าถึง','err'); return; }
+  PAGES.forEach(x=>H('pg-'+x)); S('pg-'+p); curPage=p;
+  $('nh').className=p==='home'?'na':'nb';
+  $('na').className=p==='admin'?'na':'nb';
+  if(p==='hw') rHW();
+  if(p==='chat'){ rChat(); updGuest(); }
+  if(p==='tutor') rTutor();
+  if(p==='admin'){ rAHW(); rATutor(); rSubjList(); rAUsers(); }
+}
+
+// ══════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════
+function handleAuth(){
+  if(curUser||isAdmin){
+    curUser=null; isAdmin=false; clrSess();
+    updHeader(); goPage('home'); notify('ออกจากระบบแล้ว','info');
+  } else { loginMode='login'; updLM(); S('m-login'); }
+}
+function updLM(){
+  const isReg=loginMode==='register';
+  $('ltitle').textContent=isReg?'สมัครสมาชิก':'เข้าสู่ระบบ';
+  $('lbtn').textContent=isReg?'สมัครสมาชิก':'เข้าสู่ระบบ';
+  $('swt').textContent=isReg?'มีบัญชีแล้ว? ':'ยังไม่มีบัญชี? ';
+  $('swbt').textContent=isReg?'เข้าสู่ระบบ':'สมัครสมาชิก';
+  isReg?S('reg-extra'):H('reg-extra');
+  $('lemail').value=''; $('lpass').value=''; $('ldname').value='';
+}
+function toggleMode(){ loginMode=loginMode==='login'?'register':'login'; updLM(); }
+function doLogin(){
+  const em=$('lemail').value.trim().toLowerCase();
+  const pw=$('lpass').value.trim();
+  if(!em||!pw){ notify('กรุณากรอกข้อมูลให้ครบ','err'); return; }
+  if(!validEmail(em)){ notify('รูปแบบอีเมลไม่ถูกต้อง','err'); return; }
+
+  if(loginMode==='login'){
+    // admin login ใช้ email พิเศษ
+    if(em==='admin@spb.com'&&pw===AP){
+      isAdmin=true; curUser=null; saveSess();
+      updHeader(); H('m-login'); goPage('admin'); notify('ยินดีต้อนรับ ผู้ดูแลระบบ'); return;
+    }
+    const u=db.users.find(x=>x.email===em&&x.password===pw);
+    if(u){ curUser=u; isAdmin=false; saveSess(); updHeader(); H('m-login'); notify('ยินดีต้อนรับ '+(u.displayName||u.email)); return; }
+    notify('อีเมลหรือรหัสผ่านไม่ถูกต้อง','err');
+  } else {
+    if(!validEmail(em)){ notify('รูปแบบอีเมลไม่ถูกต้อง','err'); return; }
+    if(db.users.find(x=>x.email===em)){ notify('อีเมลนี้ถูกใช้แล้ว','err'); return; }
+    const dn=$('ldname').value.trim()||em.split('@')[0];
+    const nu={id:Date.now(),email:em,displayName:dn,password:pw,unlockedFiles:[],usedCodes:[]};
+    db.users.push(nu); saveDB();
+    curUser=nu; isAdmin=false; saveSess(); updHeader(); H('m-login');
+    notify('สมัครสมาชิกสำเร็จ! ยินดีต้อนรับ '+dn);
+  }
+}
+function updHeader(){
+  $('authbtn').textContent=(curUser||isAdmin)?'🚪 ออกจากระบบ':'👤 เข้าสู่ระบบ';
+  if(isAdmin){ H('nh'); S('na'); H('ubadge'); S('abadge'); }
+  else if(curUser){
+    S('nh'); H('na'); S('ubadge'); H('abadge');
+    $('ubadge').innerHTML='👤 '+(curUser.displayName||curUser.email)+'<div class="email-badge">'+curUser.email+'</div>';
+  } else { S('nh'); H('na'); H('ubadge'); H('abadge'); }
+}
+
+// ══════════════════════════════════════════
+// FILE VIEWER with WATERMARK
+// ══════════════════════════════════════════
+function openViewer(url, name){
+  // แปลง Google Drive link เป็น embed
+  let embedUrl = url;
+  const gdMatch = url.match(/\/file\/d\/([^\/]+)/);
+  if(gdMatch){
+    embedUrl = 'https://drive.google.com/file/d/'+gdMatch[1]+'/preview';
+  }
+  $('viewer-title').textContent = name;
+  $('viewer-frame').src = embedUrl;
+  S('viewer');
+  // ใส่ลายน้ำ
+  if(curUser){
+    const wt = $('watermark-text');
+    const name2 = curUser.displayName||curUser.email;
+    wt.innerHTML = Array(6).fill('SPB LearnHub • '+name2+' • '+curUser.email).join('<br/>');
+    S('watermark');
+  }
+}
+function closeViewer(){
+  H('viewer'); H('watermark');
+  $('viewer-frame').src='';
+}
+
+// ══════════════════════════════════════════
+// HOMEWORK
+// ══════════════════════════════════════════
+function rHW(){
+  $('hwtabs').innerHTML=db.subjects.map((s,i)=>
+    `<button class="tab ${i===hwSub?'tac':''}" onclick="setHWSub(${i})">${s}</button>`
+  ).join('');
+  const files=db.hwFiles[hwSub]||[];
+  const el=$('hwfiles');
+  if(!files.length){ el.innerHTML='<div class="empty">ยังไม่มีไฟล์ในวิชานี้</div>'; return; }
+  el.innerHTML=files.map(f=>{
+    const ok=curUser&&curUser.unlockedFiles.includes(f.id);
+    const btn=ok
+      ?`<button class="openbtn" onclick="openViewer('${f.url}','${f.name}')">🔓 เปิดไฟล์</button>`
+      :`<button class="lockbtn" onclick="tryUnlock('${f.id}')">🔒 ใส่รหัส</button>`;
+    return `<div class="fc"><div style="font-size:24px">📄</div><div style="flex:1"><div class="fn">${f.name}</div><div class="fm">อัพโหลด: ${f.uploadedAt}</div></div><div>${btn}</div></div>`;
+  }).join('');
+}
+function setHWSub(i){ hwSub=i; rHW(); }
+function tryUnlock(fid){
+  if(!curUser){ S('m-login'); updLM(); notify('กรุณาเข้าสู่ระบบก่อน','err'); return; }
+  pendFile=fid; $('codeinput').value=''; S('m-code');
+}
+function doUnlock(){
+  const code=$('codeinput').value.trim().toUpperCase();
+  if(!code){ notify('กรุณาใส่รหัส','err'); return; }
+  const stored=db.codes[pendFile];
+  if(!stored){ notify('รหัสนี้ไม่มีในระบบหรือถูกใช้ไปแล้ว','err'); return; }
+  if(code!==stored){ notify('รหัสไม่ถูกต้อง','err'); return; }
+  delete db.codes[pendFile];
+  if(!curUser.unlockedFiles) curUser.unlockedFiles=[];
+  if(!curUser.unlockedFiles.includes(pendFile)) curUser.unlockedFiles.push(pendFile);
+  if(!curUser.usedCodes) curUser.usedCodes=[];
+  curUser.usedCodes.push(code);
+  const allF=Object.values(db.hwFiles).flat();
+  const f=allF.find(x=>x.id===pendFile);
+  db.codelog.push({code,fileId:pendFile,fileName:f?f.name:'?',usedBy:curUser.displayName||curUser.email,email:curUser.email,usedAt:new Date().toLocaleString('th-TH')});
+  saveDB(); H('m-code'); rHW(); notify('ปลดล็อคสำเร็จ! เปิดไฟล์ได้ตลอดโดยไม่ต้องใส่รหัสซ้ำ');
+}
+
+// ══════════════════════════════════════════
+// CHAT
+// ══════════════════════════════════════════
+function rChat(){
+  const me=curUser?(curUser.displayName||curUser.email):($('guestname')?$('guestname').value:'');
+  const el=$('chatmsgs');
+  el.innerHTML=db.chat.map(m=>{
+    const isMe=m.from===me;
+    return `<div style="display:flex;justify-content:${isMe?'flex-end':'flex-start'}">
+      <div class="${isMe?'bme':'both'}">
+        ${!isMe?`<div class="sname">${m.from}</div>`:''}
+        <div style="color:#f1f5f9">${m.text}</div>
+        <div class="mtime">${m.time}</div>
+      </div></div>`;
+  }).join(''); el.scrollTop=el.scrollHeight;
+}
+function rAChat(){
+  const el=$('achatmsgs');
+  el.innerHTML=db.chat.map(m=>{
+    const isMe=m.from==='admin';
+    return `<div style="display:flex;justify-content:${isMe?'flex-end':'flex-start'}">
+      <div class="${isMe?'bme':'both'}">
+        ${!isMe?`<div class="sname">${m.from}</div>`:''}
+        <div style="color:#f1f5f9">${m.text}</div>
+        <div class="mtime">${m.time}</div>
+      </div></div>`;
+  }).join(''); el.scrollTop=el.scrollHeight;
+}
+function updGuest(){ (!curUser&&!isAdmin)?S('guestrow'):H('guestrow'); }
+function sendMsg(){
+  const inp=$('chatinput'); const msg=inp.value.trim(); if(!msg) return;
+  const name=curUser?(curUser.displayName||curUser.email):($('guestname').value.trim()||null);
+  if(!name){ notify('กรุณาใส่ชื่อก่อนส่งข้อความ','err'); return; }
+  db.chat.push({id:Date.now(),from:name,text:msg,time:new Date().toTimeString().slice(0,5)});
+  saveDB(); inp.value=''; rChat(); if(aTabN==='chat') rAChat();
+}
+function sendAdminMsg(){
+  const inp=$('achatinput'); const msg=inp.value.trim(); if(!msg) return;
+  db.chat.push({id:Date.now(),from:'admin',text:msg,time:new Date().toTimeString().slice(0,5)});
+  saveDB(); inp.value=''; rAChat(); if(curPage==='chat') rChat();
+}
+
+// ══════════════════════════════════════════
+// TUTORING
+// ══════════════════════════════════════════
+function rTutor(){
+  $('tutortabs').innerHTML=db.subjects.map((s,i)=>
+    `<button class="tab ${i===tutSub?'tac tg':''}" onclick="setTutSub(${i})">${s}</button>`
+  ).join('');
+  const t=db.tutoring[tutSub]||db.tutoring[0];
+  $('tutorcontent').innerHTML=`<div class="tc">
+    <div class="th2"><div class="ts">${t.subject}</div><div class="tp">฿${t.price}/ชม.</div></div>
+    <div class="tsc"><div class="tl">📖 รายละเอียด</div><p style="color:#cbd5e1;line-height:1.7">${t.description||'-'}</p></div>
+    <div class="tsc"><div class="tl">🕐 เวลาที่สามารถติวได้</div><p style="color:#cbd5e1;line-height:1.7">${t.times||'-'}</p></div>
+    <button class="bookbtn" onclick="goPage('chat')">จองการติว / ติดต่อ</button>
+  </div>`;
+}
+function setTutSub(i){ tutSub=i; rTutor(); }
+
+// ══════════════════════════════════════════
+// ADMIN TABS
+// ══════════════════════════════════════════
+function aTab(t){
+  aTabN=t;
+  ['hw','subj','tutor','chat','users'].forEach(x=>{
+    $('ap-'+x).classList.toggle('hidden',x!==t);
+    $('at-'+x).className='tab'+(x===t?' ty tac':'');
+  });
+  if(t==='chat') rAChat();
+  if(t==='users') rAUsers();
+  if(t==='subj') rSubjList();
+}
+
+// ══════════════════════════════════════════
+// ADMIN SUBJECTS
+// ══════════════════════════════════════════
+function rSubjList(){
+  const el=$('subjlist'); if(!el) return;
+  el.innerHTML=db.subjects.map((s,i)=>`
+    <div class="si">
+      <input id="sj${i}" value="${s}" placeholder="ชื่อวิชา"/>
+      <button class="delbtn" onclick="delSubj(${i})" ${db.subjects.length<=1?'disabled':''}>🗑</button>
+    </div>`).join('');
+}
+function addSubj(){
+  const idx=db.subjects.length;
+  db.subjects.push('วิชาใหม่');
+  db.hwFiles[idx]=[];
+  db.tutoring.push({id:idx,subject:'วิชาใหม่',description:'',price:0,times:''});
+  saveDB(); rSubjList();
+}
+function delSubj(i){
+  if(db.subjects.length<=1){ notify('ต้องมีอย่างน้อย 1 วิชา','err'); return; }
+  if(!confirm('ลบวิชา "'+db.subjects[i]+'" ?')) return;
+  db.subjects.splice(i,1);
+  const nf={};
+  db.subjects.forEach((_,idx)=>{ nf[idx]=db.hwFiles[idx]||[]; });
+  db.hwFiles=nf;
+  db.tutoring=db.subjects.map((s,idx)=>{ const o=db.tutoring[idx]||{}; return {id:idx,subject:s,description:o.description||'',price:o.price||0,times:o.times||''}; });
+  saveDB(); rSubjList(); notify('ลบวิชาแล้ว');
+}
+function saveSubj(){
+  db.subjects=db.subjects.map((_,i)=>{ const v=$('sj'+i); return v?v.value.trim()||_:_; });
+  db.subjects.forEach((s,i)=>{ if(db.tutoring[i]) db.tutoring[i].subject=s; });
+  saveDB();
+  if(curPage==='hw') rHW();
+  if(curPage==='tutor') rTutor();
+  rAHW(); rATutor(); notify('บันทึกชื่อวิชาแล้ว');
+}
+
+// ══════════════════════════════════════════
+// ADMIN HW
+// ══════════════════════════════════════════
+function rAHW(){
+  const el=$('ahwtabs'); if(!el) return;
+  el.innerHTML=db.subjects.map((s,i)=>
+    `<button class="tab ${i===ahwSub?'ty tac':''}" onclick="setAHWSub(${i})">${s}</button>`
+  ).join('');
+  const files=db.hwFiles[ahwSub]||[];
+  const lel=$('ahwfiles');
+  if(!files.length){ lel.innerHTML='<div class="empty">ยังไม่มีไฟล์</div>'; return; }
+  lel.innerHTML=files.map(f=>{
+    const ac=db.codes[f.id];
+    const ch=ac?`<span style="color:#f59e0b">รหัส: <b>${ac}</b></span>`:`<span style="color:#64748b">ยังไม่มีรหัส</span>`;
+    return `<div class="fc">
+      <div style="font-size:22px">📄</div>
+      <div style="flex:1"><div class="fn">${f.name}</div><div class="fm">${ch}</div><div class="fm" style="color:#475569;font-size:11px">${f.url!=='#'?'🔗 มีลิงก์':'⚠️ ยังไม่มีลิงก์'}</div></div>
+      <div class="fr">
+        <button class="keybtn" onclick="openSetCode('${f.id}')">🔑 ตั้งรหัส</button>
+        <button class="delbtn" onclick="aDelFile('${f.id}')">🗑</button>
+      </div></div>`;
+  }).join('');
+}
+function setAHWSub(i){ ahwSub=i; rAHW(); }
+function aUpload(){
+  const name=prompt('ชื่อไฟล์ (เช่น เฉลยบทที่ 1.pdf):','');
+  if(!name) return;
+  const url=prompt('วางลิงก์ Google Drive ที่นี่:\n(คลิกขวาไฟล์ → แชร์ → คัดลอกลิงก์)','') || '#';
+  const id='f'+Date.now();
+  if(!db.hwFiles[ahwSub]) db.hwFiles[ahwSub]=[];
+  db.hwFiles[ahwSub].push({id,name,url,uploadedAt:new Date().toISOString().slice(0,10)});
+  saveDB(); rAHW(); notify('เพิ่มไฟล์สำเร็จ');
+}
+function aDelFile(fid){
+  if(!confirm('ลบไฟล์นี้?')) return;
+  db.hwFiles[ahwSub]=db.hwFiles[ahwSub].filter(f=>f.id!==fid);
+  delete db.codes[fid];
+  saveDB(); rAHW(); if(curPage==='hw') rHW(); notify('ลบไฟล์แล้ว');
+}
+function openSetCode(fid){
+  $('scfid').value=fid;
+  $('sccustom').value=db.codes[fid]||'';
+  S('m-setcode');
+}
+function fillRand(){ $('sccustom').value=randCode(); }
+function doSetCode(){
+  const fid=$('scfid').value;
+  const code=$('sccustom').value.trim().toUpperCase();
+  if(!code){ notify('กรุณาใส่รหัส','err'); return; }
+  if(code.length<4){ notify('รหัสต้องมีอย่างน้อย 4 ตัว','err'); return; }
+  db.codes[fid]=code;
+  saveDB(); H('m-setcode'); rAHW();
+  notify('ตั้งรหัส '+code+' สำเร็จ');
+  alert('รหัสปลดล็อค: '+code+'\n\n⚠️ 1 รหัส ใช้ได้ 1 คนเท่านั้น\nหลังปลดล็อคแล้วเปิดได้ตลอดโดยไม่ต้องใส่ซ้ำ');
+}
+
+// ══════════════════════════════════════════
+// ADMIN TUTOR
+// ══════════════════════════════════════════
+function rATutor(){
+  const el=$('atutorlist'); if(!el) return;
+  el.innerHTML=db.tutoring.map(t=>`
+    <div class="tc">
+      <div class="th2">
+        <div class="ts">${t.subject}</div>
+        <button class="editbtn" onclick="openEditTutor(${t.id})">✏️ แก้ไข</button>
+      </div>
+      <p style="color:#cbd5e1">${t.description||'(ยังไม่มีคำอธิบาย)'}</p>
+      <p style="color:#10b981;margin-top:8px">฿${t.price}/ชม. | ${t.times||'-'}</p>
+    </div>`).join('');
+}
+function openEditTutor(id){
+  const t=db.tutoring[id];
+  $('etid').value=id; $('etdesc').value=t.description;
+  $('etprice').value=t.price; $('ettimes').value=t.times;
+  S('m-tutor');
+}
+function saveTutor(){
+  const id=parseInt($('etid').value);
+  db.tutoring[id].description=$('etdesc').value;
+  db.tutoring[id].price=parseInt($('etprice').value)||0;
+  db.tutoring[id].times=$('ettimes').value;
+  saveDB(); H('m-tutor'); rATutor(); if(curPage==='tutor') rTutor(); notify('บันทึกข้อมูลการติวแล้ว');
+}
+
+// ══════════════════════════════════════════
+// ADMIN USERS
+// ══════════════════════════════════════════
+function rAUsers(){
+  const el=$('auserlist'); if(!el) return;
+  const active=Object.entries(db.codes);
+  const aHtml=active.length===0
+    ?'<p style="color:#64748b;font-size:13px;margin-bottom:20px">ไม่มีรหัสที่รอใช้งาน</p>'
+    :`<h4 style="color:#10b981;margin-bottom:10px">🔑 รหัสที่รอใช้งาน</h4>
+      <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="logtbl"><thead><tr><th>รหัส</th><th>File ID</th><th>สถานะ</th></tr></thead>
+      <tbody>${active.map(([fid,c])=>`<tr><td><b style="color:#fbbf24">${c}</b></td><td style="color:#64748b;font-size:11px">${fid}</td><td><span class="bact">รอใช้งาน</span></td></tr>`).join('')}
+      </tbody></table></div>`;
+  const logs=db.codelog||[];
+  const lHtml=logs.length===0
+    ?'<p style="color:#64748b;font-size:13px">ยังไม่มีประวัติการใช้รหัส</p>'
+    :`<h4 style="color:#f59e0b;margin-bottom:10px">📋 ประวัติการใช้รหัส</h4>
+      <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="logtbl"><thead><tr><th>รหัส</th><th>ไฟล์</th><th>ผู้ใช้</th><th>อีเมล</th><th>เวลา</th></tr></thead>
+      <tbody>${logs.map(l=>`<tr>
+        <td><b style="color:#fbbf24">${l.code}</b></td>
+        <td>${l.fileName}</td>
+        <td style="color:#a5b4fc">${l.usedBy}</td>
+        <td style="color:#64748b;font-size:11px">${l.email||'-'}</td>
+        <td style="color:#64748b">${l.usedAt}</td>
+      </tr>`).join('')}
+      </tbody></table></div>`;
+  const uHtml=`<h4 style="color:#94a3b8;margin-bottom:10px">👥 บัญชีผู้ใช้ทั้งหมด (${db.users.length} คน)</h4>`+
+    (db.users.length===0?'<div class="empty">ยังไม่มีผู้ใช้สมัครสมาชิก</div>':
+    db.users.map(u=>`
+      <div class="fc">
+        <div style="font-size:22px">👤</div>
+        <div style="flex:1">
+          <div class="fn">${u.displayName||u.email}</div>
+          <div class="fm">${u.email}</div>
+          <div class="fm">ปลดล็อคแล้ว: ${(u.unlockedFiles||[]).length} ไฟล์</div>
+          ${u.usedCodes&&u.usedCodes.length?`<div class="fm" style="color:#f59e0b">รหัสที่ใช้: ${u.usedCodes.join(', ')}</div>`:''}
+        </div>
+      </div>`).join(''));
+  el.innerHTML=aHtml+lHtml+uHtml;
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+updHeader();
+goPage(isAdmin?'admin':'home');
+</script>
+</body>
+</html>
